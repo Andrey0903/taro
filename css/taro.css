@@ -1,0 +1,55 @@
+#taroBlock {
+
+}
+
+#taroDialog {
+
+}
+
+
+/*.taroPhrases,*/
+#taroWelcome,
+#taroInputName,
+#taroFortunetellerName,
+#taroWhatYouWant,
+#taroExactWish,
+#taroVeryExactWish,
+#taroUnderstanding,
+#taroSelectPlease,
+#taroUserChoice,
+#taroUserDate,
+.taroThemeLevel2,
+.taroThemeLevel3,
+#taroCards,
+#resultTaroBlockDisabled,
+#afterCardsChoose,
+#taroUserBirthday,
+#taroUserBirthdayBlock,
+.isRightDate,
+#isRightDate,
+.isRightDateYes,
+#getAnswer,
+#getAnswerTest,
+#taroUserSayYes,
+#taroUserSayNo,
+#taroWhatUserEmail,
+#taroUserEmailForm
+{
+	display: none;
+}
+
+#resultTaroBlockDisabled {
+	border: 1px solid black;;height: 300px; width: 100%
+}
+
+#taroTheme {
+	display: none;
+}
+
+ul.cardsTaroBlock, ul#resultTaroBlockDisabled {
+	/*margin: 0; *//* Обнуляем значение отступов */
+	padding: 4px; /* Значение полей */
+}
+ul.cardsTaroBlock li, ul#resultTaroBlockDisabled li {
+	display: inline; /* Отображать как строчный элемент */
+}
