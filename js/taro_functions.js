@@ -102,3 +102,27 @@ function birthdayBlock() {
 	$('#taroUserBirthdayAnswer').show(300);
 	$('#taroUserBirthday').show(300);
 }
+
+
+function printCards() {
+	var i =0;
+	while(i<22) {
+		card = Math.floor(Math.random() * 22);
+		if ($('#card_'+card).attr('id') != 'card_'+card) {
+			i++;
+			$('#taroContainer').
+				append('<li id="card_'+card+'"><img src="./img/screen.png" /></li>');
+		}
+	}
+}
+
+function validateEmail(email) {
+	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+}
+
+function showQuestionAndAnswers(id) {
+	typingEffect($('#'+id), function() {
+		$('#'+id + 'Test').show(500);
+	});
+}

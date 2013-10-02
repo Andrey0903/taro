@@ -96,35 +96,37 @@ $(document).ready(function () {
 		var day = $("#taroUserDay option:selected").val();
 		var month = $("#taroUserMonth option:selected").val();
 		var year = $("#taroUserYear option:selected").val();
-		var text = $('#taroUserDate').text() + day + '/' + month + '/' + year;
+		var text = 'Дата моего рождения: ' + day + '/' + month + '/' + year;
 		$('#taroUserDate').html(text);
 		typingEffect($('#taroUserDate'));
 		var userDate = new Date(year, month - 1, day);
 		var userAge = new Date().getTime() - userDate.getTime();
 		var age = Math.floor(userAge/(1000*60*60*24*365));
 		if (age < 18) {
-			$('.isRightDate').show();
-			typingEffect($('.isRightDate'), null);
-			$('#isRightDate').show(2000);
+			showQuestionAndAnswers('isRightDate');
 		} else {
 			$('#resultTaroBlockDisabled').hide(500);
-			confirmationGetAnswer();
+			showQuestionAndAnswers('getAnswer');
 		}
 		e.preventDefault();
 	});
 
 	//age confirmation
-	$('#isRightDateSubmit').bind('click', function() {
+	$('#isRightDateSubmit').bind('click', function(e) {
 			if ($('input[name=isRightDate]:checked').val() == 'true') {
-				$('#isRightDateYes').show();
 				typingEffect($('#isRightDateYes'));
 			} else {
-				//show
+				birthdayBlock();
 			}
+		$('#isRightDate').hide(300);
+		$('#isRightDateTest').hide(300);
+		$('#taroUserDate').hide();
+		e.preventDefault();
 	});
 
 	//consent to the mailing
 	$('#getAnswerSubmit').bind('click', function() {
+		$('#isRightDate').hide(300);
 		if ($('input[name=getAnswer]:checked').val() == 'true') {
 			$('#getAnswerTest').hide(300);
 			typingEffect($('#taroUserSayYes'));
@@ -132,35 +134,33 @@ $(document).ready(function () {
 				$('#taroUserEmailForm').show();
 			});
 		} else {
-			//show
+		//TODO::are you sure?
 		}
 	});
 
 	//check user email
 	$('#taroUserEmailSumbit').bind('click', function() {
-		 
+		var email = $('input[name=taroUserEmail]').val();
+		if (validateEmail(email)) {
+			showQuestionAndAnswers('taroUserSex');
+		}
 	});
 
-	function confirmationGetAnswer() {
-		typingEffect($('#getAnswer'));
-		$('#getAnswerTest').show(500);
-	}
+	$('#taroUserSexSubmit').bind('click', function() {
+		$('#taroUserSexSay')
+			.html('Я - ' + $('input[name=taroUserSex]:checked').text());
+		typingEffect($('#taroThanks'), function() {
+			typingEffect($('#taroCheckEmail'), function() {
+				showQuestionAndAnswers('taroAskPhone');
+			});
+		});
+		$('input[name=taroAskPhoneTest]').mask("999-999-99-99");
+	});
 
 
-//taro functions
-
-	function printCards() {
-		var i =0;
-		while(i<22) {
-			card = Math.floor(Math.random() * 22);
-			if ($('#card_'+card).attr('id') != 'card_'+card) {
-				i++;
-				$('#taroContainer').
-					append('<li id="card_'+card+'"><img src="./img/screen.png" /></li>');
-			}
-		}
-	}
-
+	/**
+	 * saved selected cards to selectedCards variable
+	 */
 	function chooseCards() {
 		$(".cardsTaroBlock").sortable({
 			connectWith: ".cardsTaroBlock",

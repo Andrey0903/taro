@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/taro.js"></script>
 	<script type="text/javascript" src="./js/taro_functions.js"></script>
+	<script type="text/javascript" src="./js/plugins/jquery.maskedinput.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
 <body>
@@ -148,13 +149,13 @@
 			<input type="submit" value="Ok" id="taroUserBirthday">
 		</div>
 		<div class="taroPhrases" id="taroUserDate">Дата моего рождения: </div>
-		<div class="isRightDate">Вы уверены, что указали правильную дату?</div>
-		<div id="isRightDate">
+		<div id="isRightDate">Вы уверены, что указали правильную дату?</div>
+		<div id="isRightDateTest">
 			<input type="radio" name="isRightDate" value="true">Да, мне действительно еще не исполнилось 18 лет<br>
 			<input type="radio" name="isRightDate" value="false">Нет, была допущена ошибка<br>
 			<input type="submit" id="isRightDateSubmit" value="Ok"/>
 		</div>
-		<div class="isRightDateYes">Сожалею, <b class="taroUserName"></b>, но Вам должно быть не менее 18 лет, чтобы Вы смогли зарегистрироваться на моем сайте.
+		<div id="isRightDateYes">Сожалею, <b class="taroUserName"></b>, но Вам должно быть не менее 18 лет, чтобы Вы смогли зарегистрироваться на моем сайте.
 			К сожалению, на этом наше с Вами общение заканчивается.</div>
 		<div id="getAnswer">Ваш случай меня заинтересовал, <b class="taroUserName"></b>.
 			Согласитесь ли Вы БЕСПЛАТНО получить от меня подробное
@@ -177,6 +178,32 @@
 			<input type="text" name="taroUserEmail" />
 			<input type="submit" id="taroUserEmailSumbit" value="Ok" />
 		</div>
-
+		<div class="taroPhrases" id="taroUserSex">
+			Несмотря на то, что в большинстве случаев ответ на этот вопрос очевиден,
+			для абсолютной точности предсказания мне необходимо Вам его задать: Вы - мужчина или женщина?
+		</div>
+		<div id="taroUserSexTest" >
+			<input type="radio" name="taroUserSex" value="female">Женщина<br>
+			<input type="radio" name="taroUserSex" value="male">Мужчина<br>
+			<input type="submit" id="taroUserSexSubmit" value="Ok"/>
+		</div>
+		<div class="taroPhrases" id="taroUserSexSay"></div>
+		<div class="taroPhrases" id="taroThanks">
+			Благодарю. Я прямо сейчас начну составление Вашего прогноза и как только закончу,
+			сразу же отправлю его Вам. Это должно занять не более часа.
+		</div>
+		<div class="taroPhrases" id="taroCheckEmail">
+			Проверяйте, пожалуйста Вашу электронную почту. Мое сообщение будет называться "В ответ на Вашу просьбу".
+		</div>
+		<div class="taroPhrases" id="taroAskPhone">
+			Да, если хотите, Вы можете оставить Ваш номер телефона,
+			мой ассистент сообщит Вам, когда Ваше предсказание будет готово,
+			в случае необходимости ответит на Ваши вопросы и, если потребуется,
+			расскажет Вам как со мной можно связаться.
+		</div>
+		<div class="taroPhrases" id="taroAskPhoneTest">
+			<input type="text" name="taroAskPhoneTest">
+			<input type="submit" id="taroAskPhoneSubmit" value="Ok"/>
+		</div>
 	</div>
 </div>

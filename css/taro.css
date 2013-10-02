@@ -8,33 +8,13 @@
 
 
 /*.taroPhrases,*/
-#taroWelcome,
-#taroInputName,
-#taroFortunetellerName,
-#taroWhatYouWant,
-#taroExactWish,
-#taroVeryExactWish,
-#taroUnderstanding,
-#taroSelectPlease,
-#taroUserChoice,
-#taroUserDate,
-.taroThemeLevel2,
-.taroThemeLevel3,
-#taroCards,
-#resultTaroBlockDisabled,
-#afterCardsChoose,
-#taroUserBirthday,
-#taroUserBirthdayBlock,
-.isRightDate,
-#isRightDate,
-.isRightDateYes,
-#getAnswer,
-#getAnswerTest,
-#taroUserSayYes,
-#taroUserSayNo,
-#taroWhatUserEmail,
-#taroUserEmailForm
-{
+#taroWelcome, #taroInputName, #taroFortunetellerName, #taroWhatYouWant, #taroExactWish,
+#taroVeryExactWish, #taroUnderstanding, #taroSelectPlease, #taroUserChoice, #taroUserDate,
+.taroThemeLevel2, .taroThemeLevel3, #taroCards, #resultTaroBlockDisabled, #afterCardsChoose,
+#taroUserBirthday, #taroUserBirthdayBlock, #isRightDate, #isRightDateTest, #isRightDateYes,
+#getAnswer, #getAnswerTest, #taroUserSayYes, #taroUserSayNo, #taroWhatUserEmail,
+#taroUserEmailForm, #taroUserSex, #taroUserSexTest, #taroUserSexSay, #taroThanks,
+#taroCheckEmail, #taroAskPhone, #taroAskPhoneTest {
 	display: none;
 }
 
