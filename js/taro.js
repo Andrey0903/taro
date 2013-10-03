@@ -2,6 +2,11 @@ $(document).ready(function () {
 	var selectedCards = [];
 	var currentThemeLevel = null;
 
+	var taroTellerName = $('#taroTellerName').text();
+	if (taroTellerName) {
+		$('.taroTellerName').html(taroTellerName);
+	}
+
 //1) welcome
 	typingEffect($('#taroWelcome'), function() {
 		$('#taroInputName').show(300);
@@ -64,9 +69,7 @@ $(document).ready(function () {
 						$('#taroUnderstanding').hide(3000);
 						$('#taroCards').show();
 						typingEffect($('#taroSelectPlease'));
-						$('#resultTaroBlockDisabled').show();
 						printCards();
-						chooseCards();
 					});
 					e.preventDefault();
 				});
@@ -78,6 +81,18 @@ $(document).ready(function () {
 
 	//after choose
 	$('#afterCardsChoose').bind('click', function(e) {
+		$('.tarotCardFace').each(function() {
+			var id = $(this).attr('id');
+			var cardNumber = id.replace("card_","");
+			selectedCards.push(cardNumber);
+			$(this).animate({
+				width: '89px',
+				margin: '10px'
+			}, 3000);
+			$('.tarotCardBack').each(function(){
+				$(this).hide(5000);
+			})
+		});
 		$('#taroSelectPlease').hide('slow');
 		$('#afterCardsChoose').hide(2000);
 		$('#firstChooseCard').html(getCardValue(selectedCards[0]));
@@ -105,7 +120,6 @@ $(document).ready(function () {
 		if (age < 18) {
 			showQuestionAndAnswers('isRightDate');
 		} else {
-			$('#resultTaroBlockDisabled').hide(500);
 			showQuestionAndAnswers('getAnswer');
 		}
 		e.preventDefault();
@@ -156,34 +170,5 @@ $(document).ready(function () {
 		});
 		$('input[name=taroAskPhoneTest]').mask("999-999-99-99");
 	});
-
-
-	/**
-	 * saved selected cards to selectedCards variable
-	 */
-	function chooseCards() {
-		$(".cardsTaroBlock").sortable({
-			connectWith: ".cardsTaroBlock",
-			stop: function() {
-				$usedCards = $('#resultTaroBlock li');
-				$usedCards.each(function() {
-					var id = $( this ).attr('id');
-					var cardNumber = id.replace("card_","");
-					console.log(cardNumber);
-					$('#resultTaroBlockDisabled').append($('#'+id));
-					selectedCards.push(cardNumber);
-					$('#'+id + ' img')
-						.hide('highlight',  {color:'#343434'}, 500)
-						.attr('src', './img/cards/' + cardNumber + '.png')
-						.show('highlight',  {color:'#343434'}, 2000);
-				});
-				if ($('#resultTaroBlockDisabled li').size() == 3) {
-					$(".cardsTaroBlock").sortable("disable");
-					$('#taroContainer').hide("puff", 3000);
-					$('#afterCardsChoose').show(3000);
-				}
-			}
-		});
-	}
 
 });

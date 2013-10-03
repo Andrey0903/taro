@@ -1,3 +1,11 @@
+#containerTaro {
+/*	border: 1px solid #000000;
+	background-image: url(./img/old-paper2.jpg);
+	background-repeat: no-repeat;
+	background-position: bottom right;*/
+	width:80%;
+	font: 13px/1.5em "Helvetica Neue", helvetica, Arial, sans-serif;
+}
 #taroBlock {
 
 }
@@ -15,7 +23,7 @@
 #getAnswer, #getAnswerTest, #taroUserSayYes, #taroUserSayNo, #taroWhatUserEmail,
 #taroUserEmailForm, #taroUserSex, #taroUserSexTest, #taroUserSexSay, #taroThanks,
 #taroCheckEmail, #taroAskPhone, #taroAskPhoneTest {
-	display: none;
+	/*display: none;*/
 }
 
 #resultTaroBlockDisabled {
@@ -26,10 +34,64 @@
 	display: none;
 }
 
-ul.cardsTaroBlock, ul#resultTaroBlockDisabled {
-	/*margin: 0; *//* Обнуляем значение отступов */
-	padding: 4px; /* Значение полей */
+#taroTellet {
+	width:20%;
+	float:left;
+	padding-right: 2%;
 }
-ul.cardsTaroBlock li, ul#resultTaroBlockDisabled li {
-	display: inline; /* Отображать как строчный элемент */
+
+#taroTellet span {
+	display: block;
+}
+
+.mainTellerInfo {
+	color: #035170;
+}
+
+.specialization {
+	font-weight: bold;
+}
+
+#taroTellerName, .taroTellerName, .taroUserPhrase{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 14px;
+	color: #fb0190;
+	text-decoration: underline;
+}
+
+#taroContent {
+	float:left;
+	width: 70%;
+}
+
+#taroTitle {
+	color: #F94BAB;
+}
+
+.taroUserPhrase {
+	color: #054561;
+}
+
+#taroContainer {
+	width: 50%;
+}
+
+/* cards */
+.tarotCardBack, .tarotCardFace {
+	background-image: url('../img/tarot_card_back.jpg');
+	width: 30px;
+	height: 165px;
+	float: left;
+}
+.tarotCardImage {
+	width: 89px;
+	height: 165px;
+}
+.tarotCardBackLast {
+	width: 89px;
+}
+
+#taroCards {
+	width: 719px;
 }

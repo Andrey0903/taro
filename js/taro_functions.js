@@ -110,8 +110,36 @@ function printCards() {
 		card = Math.floor(Math.random() * 22);
 		if ($('#card_'+card).attr('id') != 'card_'+card) {
 			i++;
-			$('#taroContainer').
-				append('<li id="card_'+card+'"><img src="./img/screen.png" /></li>');
+			$('#taroCards').
+				append('<div class="tarotCardBack" id="card_'+card+'"></div>')
+				.hide()
+				.show(1000);
+			if (i == 22) {
+				$('#card_'+card).addClass('tarotCardBackLast');
+			}
+			$('#card_'+card).bind('click', function(e) {
+				$(e.target).unbind();
+				var $target = $(e.target);
+				var id = $target.attr('id');
+				var cardNumber = id.replace("card_","");
+				$target.attr('class', 'tarotCardFace');
+				$target.animate({
+					opacity: 0.25,
+					left: "+=50"
+				}, 1000, function(){
+					$target.append('<img class="tarotCardImage" style="" src="./img/cards/' + cardNumber + '.png" />');
+					$target.animate({
+						opacity: 1
+					}, 1000);
+				});
+				if ($('.tarotCardFace').size() > 2) {
+					//alert('sfsdfsf');
+					$('.tarotCardBack').unbind();
+					$('.tarotCardBack').each(function(){
+						$(this).animate({opacity: 0.25}, 2000);
+					});
+				}
+			});
 		}
 	}
 }
