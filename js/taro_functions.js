@@ -110,12 +110,12 @@ function printCards() {
 		card = Math.floor(Math.random() * 22);
 		if ($('#card_'+card).attr('id') != 'card_'+card) {
 			i++;
-			$('#taroCards').
-				append('<div class="tarotCardBack" id="card_'+card+'"></div>')
-				.hide()
-				.show(1000);
+			element = '<div class="tarotCardBack" id="card_'+card+'" style="display:none"></div>';
+			$('#taroCards').append(element);
+			$('#card_'+card).show(1000);
 			if (i == 22) {
 				$('#card_'+card).addClass('tarotCardBackLast');
+				$('#afterCardsChoose').show();
 			}
 			$('#card_'+card).bind('click', function(e) {
 				$(e.target).unbind();
@@ -152,5 +152,19 @@ function validateEmail(email) {
 function showQuestionAndAnswers(id) {
 	typingEffect($('#'+id), function() {
 		$('#'+id + 'Test').show(500);
+	});
+}
+
+
+function undestandPhraseAndOutputCards() {
+	typingEffect($('#taroUnderstanding'), function () {
+		$('#taroFortunetellerName').hide(500);
+		$('#taroWhatYouWant').hide(500);
+		$('#taroExactWish').hide(500);
+		$('#taroVeryExactWish').hide(500);
+		$('#taroUnderstanding').hide(3000);
+		$('#taroCards').show();
+		typingEffect($('#taroSelectPlease'));
+		printCards();
 	});
 }

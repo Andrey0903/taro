@@ -8,7 +8,7 @@ $(document).ready(function () {
 	}
 
 //1) welcome
-	typingEffect($('#taroWelcome'), function() {
+	typingEffect($('#taroWelcome'), function () {
 		$('#taroInputName').show(300);
 	});
 
@@ -40,56 +40,54 @@ $(document).ready(function () {
 	$('#taroThemeSubmit').live('click', function (e) {
 		var theme = $('#taroTheme [name=taroTheme]:checked').val();
 		var idTheme = 'taro_' + theme;
-		console.log(idTheme);
-		$('#' + idTheme).show('slow');
 		$('#taroTheme').hide('slow');
 		typingEffect($('#taroExactWish'));
+		$.get('/' + idTheme + '.php', function (data) {
+			$("#taroUnderstanding").after(data);
+			$('#' + idTheme).show('slow');
 
+			//second question
+			$('#' + idTheme + '_submit').bind('click', function (e) {
+				$('#' + idTheme).hide('slow');
 
-		//second question
-		$('#' + idTheme + '_submit').bind('click', function (e) {
-			$('#' + idTheme).hide('slow');
-			typingEffect($('#taroVeryExactWish'), function () {
-				console.log(idTheme);
-				var subTheme = $('#' + idTheme + ' [name=' + idTheme + ']:checked').val();
-				console.log(subTheme);
-				var idSubTheme = idTheme + '_' + subTheme;
-				$('#' + idSubTheme).show('slow');
+				if ($(".taroThemeLevel3").size() > 0) {
 
-
-				//third question
-				currentThemeLevel = idSubTheme;
-				$('#' + idSubTheme + '_submit').bind('click', function (e) {
-					$('#'+currentThemeLevel).hide('slow');
-					typingEffect($('#taroUnderstanding'), function () {
-						$('#taroFortunetellerName').hide(500);
-						$('#taroWhatYouWant').hide(500);
-						$('#taroExactWish').hide(500);
-						$('#taroVeryExactWish').hide(500);
-						$('#taroUnderstanding').hide(3000);
-						$('#taroCards').show();
-						typingEffect($('#taroSelectPlease'));
-						printCards();
+					typingEffect($('#taroVeryExactWish'), function () {
+						console.log(idTheme);
+						var subTheme = $('#' + idTheme + ' [name=' + idTheme + ']:checked').val();
+						console.log(subTheme);
+						var idSubTheme = idTheme + '_' + subTheme;
+						$('#' + idSubTheme).show('slow');
+						//third question
+						currentThemeLevel = idSubTheme;
+						$('#' + idSubTheme + '_submit').bind('click', function (e) {
+							$('#' + currentThemeLevel).hide('slow');
+							undestandPhraseAndOutputCards();
+							e.preventDefault();
+						});
 					});
-					e.preventDefault();
-				});
+				} else {
+					undestandPhraseAndOutputCards();
+				}
+
+				e.preventDefault();
 			});
 			e.preventDefault();
 		});
-		e.preventDefault();
+
 	});
 
 	//after choose
-	$('#afterCardsChoose').bind('click', function(e) {
-		$('.tarotCardFace').each(function() {
+	$('#afterCardsChoose').bind('click', function (e) {
+		$('.tarotCardFace').each(function () {
 			var id = $(this).attr('id');
-			var cardNumber = id.replace("card_","");
+			var cardNumber = id.replace("card_", "");
 			selectedCards.push(cardNumber);
 			$(this).animate({
 				width: '89px',
 				margin: '10px'
 			}, 3000);
-			$('.tarotCardBack').each(function(){
+			$('.tarotCardBack').each(function () {
 				$(this).hide(5000);
 			})
 		});
@@ -104,7 +102,7 @@ $(document).ready(function () {
 	});
 
 	//after input bithday
-	$('#taroUserBirthday').bind('click', function(e) {
+	$('#taroUserBirthday').bind('click', function (e) {
 
 		$('#taroUserBirthdayBlock').hide(1000);
 
@@ -116,7 +114,7 @@ $(document).ready(function () {
 		typingEffect($('#taroUserDate'));
 		var userDate = new Date(year, month - 1, day);
 		var userAge = new Date().getTime() - userDate.getTime();
-		var age = Math.floor(userAge/(1000*60*60*24*365));
+		var age = Math.floor(userAge / (1000 * 60 * 60 * 24 * 365));
 		if (age < 18) {
 			showQuestionAndAnswers('isRightDate');
 		} else {
@@ -126,12 +124,12 @@ $(document).ready(function () {
 	});
 
 	//age confirmation
-	$('#isRightDateSubmit').bind('click', function(e) {
-			if ($('input[name=isRightDate]:checked').val() == 'true') {
-				typingEffect($('#isRightDateYes'));
-			} else {
-				birthdayBlock();
-			}
+	$('#isRightDateSubmit').bind('click', function (e) {
+		if ($('input[name=isRightDate]:checked').val() == 'true') {
+			typingEffect($('#isRightDateYes'));
+		} else {
+			birthdayBlock();
+		}
 		$('#isRightDate').hide(300);
 		$('#isRightDateTest').hide(300);
 		$('#taroUserDate').hide();
@@ -139,32 +137,32 @@ $(document).ready(function () {
 	});
 
 	//consent to the mailing
-	$('#getAnswerSubmit').bind('click', function() {
+	$('#getAnswerSubmit').bind('click', function () {
 		$('#isRightDate').hide(300);
 		if ($('input[name=getAnswer]:checked').val() == 'true') {
 			$('#getAnswerTest').hide(300);
 			typingEffect($('#taroUserSayYes'));
-			typingEffect($('#taroWhatUserEmail'), function() {
+			typingEffect($('#taroWhatUserEmail'), function () {
 				$('#taroUserEmailForm').show();
 			});
 		} else {
-		//TODO::are you sure?
+			//TODO::are you sure?
 		}
 	});
 
 	//check user email
-	$('#taroUserEmailSumbit').bind('click', function() {
+	$('#taroUserEmailSumbit').bind('click', function () {
 		var email = $('input[name=taroUserEmail]').val();
 		if (validateEmail(email)) {
 			showQuestionAndAnswers('taroUserSex');
 		}
 	});
 
-	$('#taroUserSexSubmit').bind('click', function() {
+	$('#taroUserSexSubmit').bind('click', function () {
 		$('#taroUserSexSay')
 			.html('Я - ' + $('input[name=taroUserSex]:checked').text());
-		typingEffect($('#taroThanks'), function() {
-			typingEffect($('#taroCheckEmail'), function() {
+		typingEffect($('#taroThanks'), function () {
+			typingEffect($('#taroCheckEmail'), function () {
 				showQuestionAndAnswers('taroAskPhone');
 			});
 		});
